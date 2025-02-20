@@ -14,12 +14,15 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { ArrowRight, LogOutIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "./ui/button";
+import { useAppContext } from "@/context/AppContext";
+import LogoutButton from "./LogoutButton";
 
 const Navbar = () => {
   const pathName = usePathname();
-  const isLoggedIn = false;
+  const { isLoggedIn } = useAppContext();
+
   return (
     <ContentWrapper className="flex justify-between py-2 md:py-3">
       <Link href={"/"} className="flex items-center cursor-pointer">
@@ -69,21 +72,18 @@ const Navbar = () => {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuLabel>Hello, {"Name"}</DropdownMenuLabel>
+                <DropdownMenuLabel>Hello</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Button variant={"destructive"} className="w-full flex gap-2">
-                    Logout
-                    <LogOutIcon className="size-5" />
-                  </Button>
+                  <LogoutButton />
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         ) : (
-          <Button variant={"outline"} className="border border-border">
-            Sign in
-          </Button>
+          <Link href={"/sign-in"} className="border border-border">
+            <Button variant={"outline"}>Sign in</Button>
+          </Link>
         )}
       </div>
     </ContentWrapper>

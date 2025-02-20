@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Recursive } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import QueryProvider from "../components/QueryProvider";
+import { Toaster } from "react-hot-toast";
+import { AppContextProvider } from "@/context/AppContext";
 
 const recursive = Recursive({ subsets: ["latin"] });
 
@@ -13,16 +16,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${recursive.className} ${recursive.className} antialiased`}
-      >
-        <Navbar />
-        {children}
+      <body className={`${recursive.className} antialiased`}>
+        <QueryProvider>
+          <AppContextProvider>
+            <Navbar />
+            {children}
+            <Toaster />
+          </AppContextProvider>
+        </QueryProvider>
       </body>
     </html>
   );
