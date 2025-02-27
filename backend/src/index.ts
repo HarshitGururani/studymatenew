@@ -12,11 +12,10 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
     credentials: true,
   })
 );
@@ -26,7 +25,8 @@ app.use("/api/semesters", semstersRouter);
 app.get("/", async (req: Request, res: Response) => {
   res.status(200).json({ message: "test data" });
 });
+const PORT = process.env.PORT || 8000;
 
-app.listen(8000, () => {
-  console.log("server running on http://localhost:8000");
+app.listen(PORT, () => {
+  console.log(`server running on http://localhost:${PORT}`);
 });
