@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
-import authRouter from "../src/router/auth";
+import authRouter from "./router/auth";
 import mongoose from "mongoose";
 import semstersRouter from "./router/subjects";
 const app = express();
