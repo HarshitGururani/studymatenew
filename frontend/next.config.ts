@@ -1,10 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
-  images: {
-    domains: ["yt3.googleusercontent.com", "yt3.ggpht.com"],
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack: (config: { resolve: { fallback: { canvas: boolean } } }) => {
+    config.resolve.fallback = { canvas: false };
+    return config;
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
