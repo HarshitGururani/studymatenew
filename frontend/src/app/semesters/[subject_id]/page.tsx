@@ -1,15 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import ContentWrapper from "@/components/ContentWrapper";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 import * as apiClient from "../../../apiClient";
 import Image from "next/image";
 import Link from "next/link";
 import PdfViewer from "@/components/PdfViewer";
+import { useAppContext } from "@/context/AppContext";
+import { useEffect } from "react";
 
 const SubjectDetails = () => {
+  const router = useRouter();
+  const { isLoggedIn } = useAppContext();
   const { subject_id } = useParams();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("redirectAfterLogin", window.location.pathname);
+      }
+      router.push("/sign-in");
+    }
+  }, [isLoggedIn, router]);
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ["subject", subject_id],
     queryFn: () => apiClient.subject(subject_id as string),
@@ -20,7 +34,8 @@ const SubjectDetails = () => {
     return;
   }
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return <p className="flex items-center justify-center">Loading...</p>;
   if (isError) return <p className="text-destructive">Error loading subject</p>;
 
   return (

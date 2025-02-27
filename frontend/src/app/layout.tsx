@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "BCA StudyMate",
   description:
     "Maximize your Bachelor of Computer Applications (BCA) experience at SSJU with a comprehensive guide to essential resources. Discover curated study materials, practical tools, and support systems tailored for each semester, ensuring academic excellence and career readiness.",
+  icons: "/brainwave-symbol.svg",
 };
 
 export default function RootLayout({

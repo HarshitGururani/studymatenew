@@ -15,7 +15,7 @@ const Hero = () => {
             <span className="p-2 bg-purple-950 text-white font-bold">BCA</span>{" "}
             Journey: Powerful Resources for Every Semester
           </h1>
-          <p className="body-2 text-muted-foreground">
+          <p className="body-2 text-secondary-foreground">
             Start your Bachelor of Computer Applications (BCA) journey with all
             the necessary tools for each semester. These resources are designed
             to help you with basic and advanced concepts throughout your

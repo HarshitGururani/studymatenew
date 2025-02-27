@@ -35,7 +35,10 @@ const LoginForm = () => {
     onSuccess: () => {
       queryClient.invalidateQueries("validateToken");
       toast.success("Login successfull");
-      router.push("/semesters");
+
+      const redirectPath = sessionStorage.getItem("redirectAfterLogin") || "/";
+      sessionStorage.removeItem("redirectAfterLogin");
+      router.push(redirectPath);
     },
     onError(error) {
       console.log(error);
