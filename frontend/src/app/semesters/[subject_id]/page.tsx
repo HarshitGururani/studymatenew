@@ -123,9 +123,11 @@ const SubjectDetails = () => {
         </div>
 
         <div className="flex flex-col md:flex-row gap-10 my-12">
-          <div className="flex-1 max-w-3xl" id="#pdf">
-            <PdfViewer url={data.pdf} />
-          </div>
+          {data.pdf ? (
+            <div className="flex-1 max-w-3xl" id="#pdf">
+              <PdfViewer url={data.pdf} />
+            </div>
+          ) : null}
 
           {/* Sidebar or additional content */}
           <div className="w-60 h-60 flex items-center justify-center bg-purple-500 text-white font-bold text-lg rounded-lg shadow-lg">
