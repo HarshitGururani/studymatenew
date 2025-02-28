@@ -103,13 +103,13 @@ router.post(
 );
 
 router.post("/logout", (req: Request, res: Response) => {
-  res.clearCookie("authToken", {
+  res.cookie("authToken", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax", // This must match login settings
-    path: "/", // Ensures cookie is cleared globally
+    sameSite: "lax",
+    path: "/",
+    expires: new Date(0), // 🔥 Expire immediately
   });
-
   res.status(200).json({ message: "Logged out successfully" });
 });
 

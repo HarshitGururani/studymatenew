@@ -12,9 +12,10 @@ const PdfViewer = ({ url }) => {
     setIsClient(true);
   }, []);
 
-  if (!isClient) return <div>Loading...</div>;
-
+  // ✅ Ensure plugin is defined at the top level
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
+
+  if (!isClient) return <div>Loading...</div>;
 
   return (
     <div className="flex justify-center items-center w-full h-screen border rounded-lg shadow-md overflow-hidden">

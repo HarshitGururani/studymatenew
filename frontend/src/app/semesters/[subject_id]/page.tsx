@@ -1,14 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import ContentWrapper from "@/components/ContentWrapper";
-import { useParams, useRouter } from "next/navigation";
-import { useQuery } from "react-query";
-import * as apiClient from "../../../apiClient";
-import Image from "next/image";
-import Link from "next/link";
 import PdfViewer from "@/components/PdfViewer";
 import { useAppContext } from "@/context/AppContext";
+import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useQuery } from "react-query";
+import * as apiClient from "../../../apiClient";
 
 const SubjectDetails = () => {
   const router = useRouter();
@@ -80,12 +79,10 @@ const SubjectDetails = () => {
                   <li className="flex items-center gap-1 mb-4">
                     {data.url[0] && (
                       <>
-                        <Image
+                        <img
                           src={data.url[0]}
                           alt=""
                           className="rounded-full w-10 aspect-square"
-                          width={40}
-                          height={40}
                         />
                         <a
                           href={data?.videoLink?.[0]}
@@ -107,11 +104,9 @@ const SubjectDetails = () => {
                             data?.videoLink?.[1] ? "block" : "hidden"
                           } text-lg flex items-center`}
                         >
-                          <Image
+                          <img
                             src={data.url[1]}
                             alt=""
-                            width={"40"}
-                            height={"40"}
                             className={`${
                               data.url[1] ? "block" : "hidden"
                             } rounded-full w-10 aspect-square`}
