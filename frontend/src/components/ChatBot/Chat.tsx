@@ -52,7 +52,7 @@ const Chat = ({ subject }: { subject: string }) => {
 
   const sendMessage = () => {
     if (!message.trim() || !socket) return;
-    // setLoading(true);
+    setLoading(false);
 
     socket.emit("chatMessage", { message, subject });
     setMessages((prev) => {
