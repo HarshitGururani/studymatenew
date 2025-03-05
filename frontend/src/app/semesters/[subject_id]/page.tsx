@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 import * as apiClient from "../../../apiClient";
+import Chat from "@/components/ChatBot/Chat";
 
 const SubjectDetails = () => {
   const router = useRouter();
@@ -15,12 +16,13 @@ const SubjectDetails = () => {
   const { subject_id } = useParams();
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      if (typeof window !== "undefined") {
-        sessionStorage.setItem("redirectAfterLogin", window.location.pathname);
-      }
-      router.push("/sign-in");
-    }
+    // if (!isLoggedIn) {
+    //   if (typeof window !== "undefined") {
+    //     sessionStorage.setItem("redirectAfterLogin", window.location.pathname);
+    //   }
+    //   sessionStorage.removeItem("redirectAfterLogin");
+    //   router.push("/sign-in");
+    // }
   }, [isLoggedIn, router]);
 
   const { data, isLoading, isError } = useQuery({
@@ -75,22 +77,26 @@ const SubjectDetails = () => {
                 <h4 className="text-purple-700 h6 font-semibold font-grotesk">
                   Recommended {data.title} Learning Playlists
                 </h4>
-                <ul className="ml-2 md:ml-10 mt-2">
+                <ul className="ml-2 md:ml-4 mt-2">
                   <li className="flex items-center gap-1 mb-4">
                     {data.url[0] && (
                       <>
-                        <img
-                          src={data.url[0]}
-                          alt=""
-                          className="rounded-full w-10 aspect-square"
-                        />
-                        <a
+                        <Link
                           href={data?.videoLink?.[0]}
                           target="_blank"
-                          className="text-lg"
+                          className={`${
+                            data?.videoLink?.[0] ? "block" : "hidden"
+                          } text-lg flex items-center`}
                         >
+                          <img
+                            src={data.url[0]}
+                            alt=""
+                            className={`${
+                              data.url[0] ? "block" : "hidden"
+                            } rounded-full w-10 aspect-square`}
+                          />
                           {data.channelName[0]}
-                        </a>
+                        </Link>
                       </>
                     )}
                   </li>
@@ -122,16 +128,16 @@ const SubjectDetails = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-10 my-12">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1.3fr]  gap-6 my-12">
           {data.pdf ? (
-            <div className="flex-1 max-w-3xl" id="#pdf">
+            <div className="max-w-6xl" id="#pdf">
               <PdfViewer url={data.pdf} />
             </div>
           ) : null}
 
           {/* Sidebar or additional content */}
-          <div className="w-60 h-60 flex items-center justify-center bg-purple-500 text-white font-bold text-lg rounded-lg shadow-lg">
-            ChatBot
+          <div className="">
+            <Chat subject={data.title} />
           </div>
         </div>
       </ContentWrapper>

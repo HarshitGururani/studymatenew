@@ -20,7 +20,11 @@ const PdfViewer = ({ url }) => {
   return (
     <div className="flex justify-center items-center w-full h-screen border rounded-lg shadow-md overflow-hidden">
       <Worker workerUrl="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js">
-        <Viewer fileUrl={url} plugins={[defaultLayoutPluginInstance]} />
+        <Viewer
+          fileUrl={url}
+          plugins={[defaultLayoutPluginInstance]}
+          defaultScale={0.7}
+        />
       </Worker>
     </div>
   );
