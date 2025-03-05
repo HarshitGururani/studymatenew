@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
-const scoketUrl = "http://localhost:8000";
+const scoketUrl =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
 
 export const useSocket = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
