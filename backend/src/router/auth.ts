@@ -46,7 +46,7 @@ router.post(
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 86400000,
-        sameSite: "none", // Required for cross-origin cookies
+        sameSite: "lax", // Required for cross-origin cookies
       });
 
       return res.status(200).json({ message: "SignIn successful" });
@@ -92,7 +92,7 @@ router.post(
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 86400000,
-        sameSite: "none", // Required for cross-origin cookies
+        sameSite: "lax", // Required for cross-origin cookies
       });
 
       return res.status(200).json({ userId: user.id });
@@ -107,7 +107,6 @@ router.post("/logout", (req: Request, res: Response) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
-    path: "/", // Make sure it's set globally
     expires: new Date(0), // 🔥 Forces browser to delete cookie immediately
   });
   res.status(200).json({ message: "Logged out successfully" });

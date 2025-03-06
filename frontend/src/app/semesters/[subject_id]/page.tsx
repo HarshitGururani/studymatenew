@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { useQuery } from "react-query";
 import * as apiClient from "../../../apiClient";
 import Chat from "@/components/ChatBot/Chat";
+import MobileChatBot from "@/components/ChatBot/MobileChatBot";
 
 const SubjectDetails = () => {
   const router = useRouter();
@@ -40,7 +41,7 @@ const SubjectDetails = () => {
   if (isError) return <p className="text-destructive">Error loading subject</p>;
 
   return (
-    <div className="w-full pt-[20px] mb-12 md:mb-0 md:pt-6 md:min-h-[700px]">
+    <div className="w-full pt-[20px] mb-12 md:mb-0 md:pt-6 md:min-h-[700px] relative">
       <ContentWrapper>
         <div className="flex flex-col gap-6 md:flex-row md:gap-12">
           <div className="flex-shrink-0 md:ml-0 ">
@@ -136,8 +137,12 @@ const SubjectDetails = () => {
           ) : null}
 
           {/* Sidebar or additional content */}
-          <div className="">
+          <div className="hidden md:block">
             <Chat subject={data.title} />
+          </div>
+
+          <div className="block md:hidden">
+            <MobileChatBot subject={data.title} />
           </div>
         </div>
       </ContentWrapper>

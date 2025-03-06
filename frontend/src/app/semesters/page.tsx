@@ -3,7 +3,12 @@ import ContentWrapper from "@/components/ContentWrapper";
 import { useQueries } from "react-query";
 import * as apiClient from "../../apiClient";
 import Carousel from "@/components/Carousel";
+import { useEffect } from "react";
 const SemestersPage = () => {
+  useEffect(() => {
+    sessionStorage.removeItem("chatMessages");
+  }, []);
+
   const semesters = [1, 2, 3, 4];
 
   const queries = useQueries(

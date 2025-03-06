@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
               role: "user",
               parts: [
                 {
-                  text: `You are a knowledgeable tutor in **${subject}**. Explain concepts **clearly and concisely** for students.Break down complex ideas into **simple steps** with examples when needed.If relevant, briefly mention **real-world applications**.For errors, **identify the mistake and suggest a fix**.Now, answer the question in **5-6 sentences**:${message}`,
+                  text: `You are a knowledgeable tutor in ${subject}. Explain concepts **clearly and concisely for students.Break down complex ideas into simple steps with examples when needed.If relevant, briefly mention real-world applications.For errors, identify the mistake and suggest a fix.Now, answer the question in 4-5 sentences:${message}`,
                 },
               ],
             },

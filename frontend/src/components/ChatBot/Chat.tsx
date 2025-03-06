@@ -131,7 +131,7 @@ const Chat = ({ subject }: { subject: string }) => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()} // ✅ Send on Enter key press
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
         <Button
           onClick={sendMessage}
